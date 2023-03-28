@@ -1,5 +1,6 @@
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,7 +31,13 @@ public class Main {
 		RsaKeyPair rsaKeyPair = RsaUtil.createKeypairAsString();
 		String rsaEncrypt = RsaUtil.encrypt(seedEncrypt, rsaKeyPair.getPUBLIC_KEY());
 
+		String encodingRsaEncrypt = Base64.getUrlEncoder().encodeToString(rsaEncrypt.getBytes());
+		System.out.println("encodingRsaEncrypt: " + encodingRsaEncrypt);
+
 		//네오 서버
+
+		String decodingRsaEncrypt = new String(Base64.getUrlDecoder().decode(encodingRsaEncrypt));
+		System.out.println("decodingRsaEncrypt: " + decodingRsaEncrypt);
 
 		//RSA 복호화
 		String rsaDecrypt = RsaUtil.decrypt(rsaEncrypt, rsaKeyPair.getPRIVATE_KEY());
