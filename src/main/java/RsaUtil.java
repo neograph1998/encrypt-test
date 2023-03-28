@@ -77,17 +77,4 @@ public class RsaUtil {
 		return decryptedData;
 	}
 
-	public static void main(String[] args) throws NoSuchAlgorithmException {
-		String plainText = "test";
-
-		RsaKeyPair keypairAsString = createKeypairAsString();
-
-		String encode = encrypt(plainText, keypairAsString.getPUBLIC_KEY());
-		String decode = decrypt(encode, keypairAsString.getPRIVATE_KEY());
-
-		System.out.println(encode);
-		System.out.println(decode);
-
-	}
-
 }
